@@ -5,34 +5,15 @@ import { Check, Forward, Globe, Mail, MapPin, Phone } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const MiniCard = () => {
-  const [user, setUser] = useState({});
-  const [metaData, setMetaData] = useState({});
-
-  useEffect(() => {
-    axios
-      .get("/api/userdata")
-      .then((res) => setUser(res.data.result[0]))
-      .catch((error) => console.error("Error fetching user data:", error));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("/api/metadata")
-      .then((res) => setMetaData(res.data.result[0]))
-      .catch((error) => console.error("Error fetching user data:", error));
-  }, []);
-
+const MiniCard = ({ user, metaData }) => {
   const handleShare = () => {
-    if (metaData && user) {
-      navigator.share({
-        title: metaData?.profileTitle,
-        text: metaData?.description,
-        url: user?.shareProfileURL,
-      });
-    }
+    navigator.share({
+      title: metaData?.profileTitle,
+      text: metaData?.description,
+      url: "https://elred-profile-card.vercel.app/card",
+    });
   };
 
   return (
@@ -44,10 +25,6 @@ const MiniCard = () => {
         <meta property="og:title" content={metaData?.profileTitle} />
         <meta property="og:description" content={metaData?.description} />
         <meta property="og:image" content={metaData?.cardImageURL} />
-        <meta
-          property="og:url"
-          content={`https://example.com/profile/${metaData?.userCode}`}
-        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metaData?.cardTitle} />
         <meta name="twitter:description" content={metaData?.description} />
@@ -67,7 +44,7 @@ const MiniCard = () => {
 
           <div className="relative">
             <Image
-              src="/profile.png"
+              src={user?.dpURL || "/profile.png"}
               alt="Profile"
               width={120}
               height={120}
@@ -77,14 +54,15 @@ const MiniCard = () => {
           </div>
 
           <h2 className="text-2xl">
-            <span className="font-bold text-4xl">Roger</span> <br /> Vaccaro
+            <span className="font-bold text-4xl">{user?.firstname}</span> <br />{" "}
+            {user?.lastname}
           </h2>
 
           {/* detail */}
           <div className="space-y-1 text-xl">
-            <p>Founder</p>
+            <p>{user?.title?.[0].value}</p>
             <p>Wildcraft</p>
-            <p>New Delhi</p>
+            <p>{user?.location?.city}</p>
           </div>
 
           {/* card group */}
@@ -129,5 +107,28 @@ const MiniCard = () => {
     </>
   );
 };
+
+// Fetch metadata and user data server-side
+export async function getServerSideProps() {
+  try {
+    const userResponse = await axios.get("/api/userdata");
+    const metaDataResponse = await axios.get("/api/metadata");
+
+    return {
+      props: {
+        user: userResponse.data.result[0],
+        metaData: metaDataResponse.data.result[0],
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        user: {},
+        metaData: {},
+      },
+    };
+  }
+}
 
 export default MiniCard;
