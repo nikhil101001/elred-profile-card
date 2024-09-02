@@ -31,7 +31,7 @@ export default function Home() {
       navigator.share({
         title: metaData?.profileTitle,
         text: metaData?.description,
-        url: "https://elred-profile-card.vercel.app/card",
+        url: user?.shareProfileURL,
       });
     }
   };
@@ -53,7 +53,7 @@ export default function Home() {
 
       <div className="flex flex-col gap-8 p-8">
         {/* user detail */}
-        <div className="flex flex-col gap-4 p-[20px]">
+        <div className="flex flex-col gap-4">
           <Image
             src={user?.dpURL || "/profile.png"}
             alt="Profile"
@@ -176,6 +176,7 @@ export default function Home() {
             >
               X
             </button>
+
             <MiniCard />
           </div>
         </div>
