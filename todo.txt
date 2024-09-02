@@ -1,0 +1,36 @@
+location open on google map
+
+card tap open in a popup
+
+on click of share open the share modal
+
+comments can be scrollable
+
+add meta data with image title description
+
+profile banner image IN background
+
+card image url is meta data
+
+profile and share card is different routes
+
+use library for share
+
+
+//////////////////// metadata
+// {userCode: '66961e8dcc9a8155d09b8c9b', cardImageURL: 'https://assets-dev.elred.io/lambda/screenshots/cardImages/66961e8dcc9a8155d09b8c9b/1724987460046.png', profileTitle: "Hey Checkout Deepa's Profile on elRed", cardTitle: "Hey Checkout Deepa's Card on elRed", description: 'Title: engineering lead'}
+// cardImageURL
+// :
+// "https://assets-dev.elred.io/lambda/screenshots/cardImages/66961e8dcc9a8155d09b8c9b/1724987460046.png"
+// cardTitle
+// :
+// "Hey Checkout Deepa's Card on elRed"
+// description
+// :
+// "Title: engineering lead"
+// profileTitle
+// :
+// "Hey Checkout Deepa's Profile on elRed"
+// userCode
+// :
+// "66961e8dcc9a8155d09b8c9b"
