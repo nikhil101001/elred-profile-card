@@ -31,7 +31,7 @@ export default function Home() {
       navigator.share({
         title: metaData?.profileTitle,
         text: metaData?.description,
-        url: user?.shareProfileURL,
+        url: "https://elred-profile-card.vercel.app/card",
       });
     }
   };

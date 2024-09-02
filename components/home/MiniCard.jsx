@@ -29,7 +29,7 @@ const MiniCard = () => {
       navigator.share({
         title: metaData?.profileTitle,
         text: metaData?.description,
-        url: user?.shareProfileURL,
+        url: "https://elred-profile-card.vercel.app/card",
       });
     }
   };
