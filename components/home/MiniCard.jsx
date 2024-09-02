@@ -6,8 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-
-
 const MiniCard = () => {
   const [user, setUser] = useState({});
   const [metaData, setMetaData] = useState({});
@@ -38,9 +36,9 @@ const MiniCard = () => {
 
   return (
     <div
-      className={`h-full flex flex-col gap-4 max-w-xl mx-auto bg-[length:100%_130%] bg-[url('/background.png')] text-white items-center justify-center border rounded-xl backdrop-blur-lg p-4 w-full`}
+      className={`min-h-full flex flex-col gap-4 max-w-xl mx-auto bg-[length:100%_130%] bg-[url('/background.png')] text-white items-center justify-center border rounded-xl backdrop-blur-lg p-4 w-full`}
     >
-      <div className="h-[90%] w-[90%] flex flex-col items-center justify-between text-center gap-6">
+      <div className="w-[90%] h-full flex flex-col items-center justify-between text-center gap-6">
         <div
           className="flex items-center justify-end gap-2 ms-auto cursor-pointer"
           onClick={handleShare}

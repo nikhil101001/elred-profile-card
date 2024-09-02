@@ -3,11 +3,11 @@ import React from "react";
 
 export async function generateMetadata() {
   try {
-    const res = await axios.get(`http://localhost:3000/api/metadata`);
+    const res = await axios.get(
+      `https://elred-profile-card.vercel.app/api/metadata`
+    );
 
     const metaData = res.data.result[0];
-
-    console.log(metaData);
 
     return {
       title: metaData?.profileTitle || "Default Title",
